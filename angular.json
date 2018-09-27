@@ -1,0 +1,165 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "cxx-web": {
+      "root": "projects/cxx-web/",
+      "sourceRoot": "projects/cxx-web/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/cxx-web",
+            "index": "projects/cxx-web/src/index.html",
+            "main": "projects/cxx-web/src/main.ts",
+            "polyfills": "projects/cxx-web/src/polyfills.ts",
+            "tsConfig": "projects/cxx-web/tsconfig.app.json",
+            "assets": [
+              "projects/cxx-web/src/favicon.ico",
+              "projects/cxx-web/src/assets"
+            ],
+            "styles": [
+              "projects/cxx-web/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/cxx-web/src/environments/environment.ts",
+                  "with": "projects/cxx-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "cxx-web:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "cxx-web:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "cxx-web:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/cxx-web/src/test.ts",
+            "polyfills": "projects/cxx-web/src/polyfills.ts",
+            "tsConfig": "projects/cxx-web/tsconfig.spec.json",
+            "karmaConfig": "projects/cxx-web/karma.conf.js",
+            "styles": [
+              "projects/cxx-web/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/cxx-web/src/favicon.ico",
+              "projects/cxx-web/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/cxx-web/tsconfig.app.json",
+              "projects/cxx-web/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "cxx-lib": {
+      "root": "projects/cxx-lib",
+      "sourceRoot": "projects/cxx-lib/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/cxx-lib/tsconfig.lib.json",
+            "project": "projects/cxx-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/cxx-lib/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/cxx-lib/src/test.ts",
+            "tsConfig": "projects/cxx-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/cxx-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/cxx-lib/tsconfig.lib.json",
+              "projects/cxx-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss",
+      "spec": false
+    },
+    "@schematics/angular:class": {
+      "spec": false
+    },
+    "@schematics/angular:directive": {
+      "spec": false
+    },
+    "@schematics/angular:guard": {
+      "spec": false
+    },
+    "@schematics/angular:module": {
+      "spec": false,
+      "routing": true
+    },
+    "@schematics/angular:pipe": {
+      "spec": false
+    },
+    "@schematics/angular:service": {
+      "spec": false
+    }
+  },
+  "defaultProject": "cxx-web"
+}
