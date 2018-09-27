@@ -1,0 +1,29 @@
+<nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
+  <button nz-button nzType="default" nzShape="circle" (click)="playPreSong()"><i class="anticon anticon-step-backward"></i></button>
+  <button nz-button nzType="default" nzShape="circle" nzSize="large" style="margin-left:8px;margin-right:8px;" (click)="playOrPause()">
+    <i class="anticon anticon-caret-right" *ngIf="paused;else played"></i>
+    <ng-template #played>
+      <i class="anticon anticon-pause"></i>
+    </ng-template>
+  </button>
+  <button nz-button nzType="default" nzShape="circle" (click)="playNextSong()"><i class="anticon anticon-step-forward"></i></button>
+</nz-card>
+<ng-template #coverTemplate>
+  <!-- <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/> -->
+  <nz-upload class="avatar-uploader"
+    nzListType="picture-card"
+    [nzShowUploadList]="false"
+    [nzBeforeUpload]="beforeUpload"
+    (nzChange)="handleChange($event)">
+    <ng-container *ngIf="!avatarUrl">
+      <i class="anticon anticon-plus"></i>
+      <div class="ant-upload-text">Upload</div>
+    </ng-container>
+    <img *ngIf="avatarUrl" [src]="avatarUrl" class="avatar">
+  </nz-upload>
+</ng-template>
+<audio #cxxmusic loop (ended)="ended()">
+  <source [src]="music.musicSrc">
+  <!--<source src="../../../assets/mp3/冯提莫 - 佛系少女.mp3">-->
+  Your browser does not support the audio element.
+</audio>

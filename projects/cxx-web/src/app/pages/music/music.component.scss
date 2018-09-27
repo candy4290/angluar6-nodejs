@@ -1,0 +1,29 @@
+:host ::ng-deep .ant-card-body{
+  background: #f0f2f5;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:host ::ng-deep .ant-upload.ant-upload-select-picture-card{
+  > .ant-upload {
+    padding: 0;
+    img {
+      width: 238px;
+      height: 298px;
+      transition: transform 1s;
+      &:hover {
+        transform: scaleY(1.4)
+      }
+    }
+  }
+  /* border: 1px dashed #d9d9d9; */
+  border-width: 0;
+  width: 238px;
+  height: 298px;
+  /* border-radius: 4px; */
+  border-radius:0 ;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease;
+  margin: 0;
+}

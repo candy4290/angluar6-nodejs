@@ -19,19 +19,8 @@
     ],
     "paths": {
       "cxx-lib": [
-        "dist/cxx-lib",
-        "dist/cxx-lib"
+        "projects/cxx-lib/src"
       ],
-      "cxx-lib/*": [
-        "dist/cxx-lib/*",
-        "dist/cxx-lib/*"
-      ],
-      "cxx-web": [
-        "dist/cxx-web"
-      ],
-      "cxx-web/*": [
-        "dist/cxx-web/*"
-      ]
     }
   }
 }
