@@ -12,8 +12,10 @@
       width: 238px;
       height: 298px;
       transition: transform 1s;
+      transform-origin: 50% 0;
       &:hover {
-        transform: scaleY(1.4)
+        transform: scaleY(1.2);
+        transform-origin: 50% 0;
       }
     }
   }
