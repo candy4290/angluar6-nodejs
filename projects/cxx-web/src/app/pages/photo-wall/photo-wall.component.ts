@@ -8,7 +8,7 @@ import { listAnimm, rotateAnimm } from 'cxx-lib';
   animations: [listAnimm, rotateAnimm]
 })
 export class PhotoWallComponent implements OnInit {
-  imgs = [{}];
+  imgs = [{frontOrBack: 'front', relativeFrontOrBack: 'back'}, {frontOrBack: 'front', relativeFrontOrBack: 'back'}];
   frontOrBack = 'front';
   relativeFrontOrBack = 'back';
   constructor() { }
@@ -21,13 +21,13 @@ export class PhotoWallComponent implements OnInit {
    *
    * @memberof PhotoWallComponent
    */
-  rotate() {
-    if (this.frontOrBack === 'front') {
-      this.frontOrBack = 'back';
-      this.relativeFrontOrBack = 'front';
+  rotate(img: any) {
+    if (img.frontOrBack === 'front') {
+      img.frontOrBack = 'back';
+      img.relativeFrontOrBack = 'front';
     } else {
-      this.frontOrBack = 'front';
-      this.relativeFrontOrBack = 'back';
+      img.frontOrBack = 'front';
+      img.relativeFrontOrBack = 'back';
     }
   }
 

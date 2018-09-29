@@ -5,3 +5,8 @@
   position: absolute;right: 8px;color: aqua;
   cursor: pointer;
 }
+.container{perspective:1000;transform-style:preserve-3d;}
+.flip{position:relative;transform-style:preserve-3d;}
+.front,.back{position:absolute;top: 0px;left: 0px;backface-visibility:hidden;}
+.front{z-index:2;}
+
