@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { UploadFile, NzMessageService } from 'ng-zorro-antd';
 import { Util, item } from 'cxx-lib';
 import { Music } from './music.model';
+import { Subscription } from 'rxjs';
+import { MusicService } from './music.service';
 
 @Component({
   selector: 'app-music',
@@ -9,22 +11,36 @@ import { Music } from './music.model';
   styleUrls: ['./music.component.scss'],
   animations: [item]
 })
-export class MusicComponent implements OnInit, AfterViewInit {
-  music: Music;
+export class MusicComponent implements OnInit, OnDestroy, AfterViewInit {
+  music: Music = {
+    musicId: 0,
+    musicName: '',
+    musicer: '',
+    musicSrc: ''
+  };
   musicList: Music[] = [];
   avatarUrl = 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png';
   paused = true; // 是否暂停（默认为true）
   @ViewChild('cxxmusic') cxxmusic: ElementRef;
   private audio: any;
   private pauseInterval: any;
-  constructor(private message: NzMessageService) { }
+  private musicList$: Subscription;
+  constructor(private message: NzMessageService,
+    private musicService: MusicService) {
+    this.musicList$ = this.musicService.queryMusicList().subscribe(rsp => {
+      this.musicList = rsp;
+      this.music = this.musicList[0];
+    }, error => {
+    });
+  }
 
   ngOnInit() {
-    this.musicList = [
-      {musicId: 0, musicSrc: '../../../assets/mp3/赵雷 - 南方姑娘.mp3', musicName: '南方姑娘', musicer: '赵雷'},
-      {musicId: 1, musicSrc: '../../../assets/mp3/冯提莫 - 佛系少女.mp3', musicName: '佛系少女', musicer: '冯提莫'},
-    ];
-    this.music = this.musicList[0];
+  }
+
+  ngOnDestroy() {
+    if (this.musicList$) {
+      this.musicList$.unsubscribe();
+    }
   }
 
   ngAfterViewInit() {
@@ -79,6 +95,9 @@ export class MusicComponent implements OnInit, AfterViewInit {
    * @memberof MusicComponent
    */
   playPreSong() {
+    if (this.pauseInterval) {
+      clearInterval(this.pauseInterval);
+    }
     const currentOrder = this.musicList.indexOf(this.music);
     if (currentOrder > 0) {
       this.music = this.musicList[currentOrder - 1];
@@ -101,6 +120,9 @@ export class MusicComponent implements OnInit, AfterViewInit {
    * @memberof MusicComponent
    */
   playNextSong() {
+    if (this.pauseInterval) {
+      clearInterval(this.pauseInterval);
+    }
     const currentOrder = this.musicList.indexOf(this.music);
     if (currentOrder < this.musicList.length - 1) {
       this.music = this.musicList[currentOrder + 1];

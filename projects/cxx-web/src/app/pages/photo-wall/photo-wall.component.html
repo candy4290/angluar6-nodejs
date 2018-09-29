@@ -1,0 +1,23 @@
+<div nz-row nzGutter="8" class="gutter-example">
+  <div [@listAnim]="imgs?imgs.length:''">
+    <div nz-col class="gutter-row" nzSpan="6" *ngFor="let img of imgs" [@listAnim]>
+      <div [@rotate]="frontOrBack" style="position:absolute">
+        <i class="anticon anticon-retweet" (click)="rotate()"></i>
+        <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" style="width:100%">
+      </div>
+      <div [@rotate]="relativeFrontOrBack" style="position:absolute">
+        <i class="anticon anticon-retweet" (click)="rotate()"></i>
+        <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" style="width:100%">
+      </div>
+    </div>
+  </div>
+  <!-- <div nz-col class="gutter-row" nzSpan="6">
+    <div class="gutter-box">col-6</div>
+  </div>
+  <div nz-col class="gutter-row" nzSpan="6">
+    <div class="gutter-box">col-6</div>
+  </div>
+  <div nz-col class="gutter-row" nzSpan="6">
+    <div class="gutter-box">col-6</div>
+  </div> -->
+</div>
