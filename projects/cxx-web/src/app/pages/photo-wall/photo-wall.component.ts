@@ -8,7 +8,12 @@ import { listAnimm, rotateAnimm } from 'cxx-lib';
   animations: [listAnimm, rotateAnimm]
 })
 export class PhotoWallComponent implements OnInit {
-  imgs = [{frontOrBack: 'front', relativeFrontOrBack: 'back'}, {frontOrBack: 'front', relativeFrontOrBack: 'back'}];
+  imgs = [{frontOrBack: 'front', relativeFrontOrBack: 'back'},
+  {frontOrBack: 'front', relativeFrontOrBack: 'back'},
+  {frontOrBack: 'front', relativeFrontOrBack: 'back'},
+  {frontOrBack: 'front', relativeFrontOrBack: 'back'},
+  {frontOrBack: 'front', relativeFrontOrBack: 'back'},
+  {frontOrBack: 'front', relativeFrontOrBack: 'back'}];
   frontOrBack = 'front';
   relativeFrontOrBack = 'back';
   constructor() { }

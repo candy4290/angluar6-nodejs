@@ -1,36 +1,12 @@
-<div nz-row nzGutter="8" class="gutter-example">
-  <div [@listAnim]="imgs?imgs.length:''" class="container">
-    <div nz-col class="gutter-row" nzSpan="6" *ngFor="let img of imgs" class="flip">
-      <div [@rotate]="img.frontOrBack" class="front">
-        <i class="anticon anticon-retweet" (click)="rotate(img)"></i>
-        <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" style="width:100%">
-      </div>
-      <nz-card [@rotate]="img.relativeFrontOrBack" class="back" style="width:100%">
-        <i class="anticon anticon-retweet" (click)="rotate(img)"></i>
-        <p>背后</p>
-        <p>Card content</p>
-        <p>Card content</p>
-      </nz-card>
-        <!-- <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" style="width:100%"> -->
+<div [@listAnim]="imgs?imgs.length:''" class="container">
+  <div nz-col *ngFor="let img of imgs" class="flip">
+    <div [@rotate]="img.frontOrBack" class="front">
+      <i class="anticon anticon-retweet" (click)="rotate(img)"></i>
+      <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" style="width:100%">
     </div>
+    <nz-card [@rotate]="img.relativeFrontOrBack" class="back">
+      <i class="anticon anticon-retweet" (click)="rotate(img)"></i>
+      <p>背后的故事</p>
+    </nz-card>
   </div>
-  <!-- <div nz-col class="gutter-row" nzSpan="6">
-    <div class="gutter-box">col-6</div>
-  </div>
-  <div nz-col class="gutter-row" nzSpan="6">
-    <div class="gutter-box">col-6</div>
-  </div>
-  <div nz-col class="gutter-row" nzSpan="6">
-    <div class="gutter-box">col-6</div>
-  </div> -->
 </div>
-<!-- <div class="container">
-  <div class="flip">
-    <div class="front">
-      <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" alt="">
-    </div>
-    <div class="back">
-      <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" alt="">
-    </div>
-  </div>
-</div> -->

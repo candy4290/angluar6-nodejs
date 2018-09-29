@@ -1,12 +1,48 @@
 :host ::ng-deep .anticon-retweet {
   &:hover {
-    color:#fff;
+    color: aquamarine;
   }
   position: absolute;right: 8px;color: aqua;
   cursor: pointer;
 }
-.container{perspective:1000;transform-style:preserve-3d;}
-.flip{position:relative;transform-style:preserve-3d;}
-.front,.back{position:absolute;top: 0px;left: 0px;backface-visibility:hidden;}
-.front{z-index:2;}
+.container{
+  perspective:1000;
+  transform-style:preserve-3d;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+.flip{
+  position:relative;
+  transform-style:preserve-3d;
+  margin-top: 8px;
+}
+.front,.back{
+  position:absolute;
+  top: 0px;left: 0px;
+  backface-visibility:hidden;
+  width: 150px;height:188px;
+}
+@keyframes cool {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(8deg);
+  }
+  75% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.front{
+  z-index:2;
+  &:hover {
+    cursor: pointer;
+    animation: cool 500ms ease;
+  }
+}
 
