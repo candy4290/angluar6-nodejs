@@ -1,8 +1,18 @@
 //express_demo.js 文件
 var express = require('express');
+var mysql      = require('mysql');
 // var multer  = require('multer');
 var app = express();
 var bodyParser = require('body-parser');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '1qaz@WSX',
+  port: '3306',
+  database : 'Cxx'
+});
+
+connection.connect();
 // 创建 application/x-www-form-urlencoded 编码解析
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,18 +37,18 @@ app.get('/', function (req, res) {
   res.end(JSON.stringify(req.body));
 })
 app.post('/musicList', function (req, res) {
-  // 输出 JSON 格式
-  const result = {
-    rtnCode: '000000',
-    rtnData: {
-      musicList: [
-        { musicId: 0, musicSrc: '../../../assets/mp3/赵雷 - 南方姑娘.mp3', musicName: '南方姑娘', musicer: '赵雷' },
-        { musicId: 1, musicSrc: '../../../assets/mp3/冯提莫 - 佛系少女.mp3', musicName: '佛系少女', musicer: '冯提莫' },
-      ]
-    },
-    rtnMsg: 'SUCCESS'
-  };
-  res.end(JSON.stringify(result));
+  connection.query('SELECT * from mp3s', function (error, results, fields) {
+    if (error) throw error;
+    // 输出 JSON 格式
+    const result = {
+      rtnCode: '000000',
+      rtnData: {
+        musicList: results
+      },
+      rtnMsg: 'SUCCESS'
+    };
+    res.end(JSON.stringify(result));
+  });
 })
 
 var server = app.listen(8081, function () {

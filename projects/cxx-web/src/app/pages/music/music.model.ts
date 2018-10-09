@@ -1,6 +1,5 @@
 export class Music {
-  musicId: number;
-  musicSrc: string;
-  musicName: string;
+  path: string;
+  name: string;
   musicer: string;
 }

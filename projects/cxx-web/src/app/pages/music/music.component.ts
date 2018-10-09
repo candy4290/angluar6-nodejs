@@ -13,10 +13,9 @@ import { MusicService } from './music.service';
 })
 export class MusicComponent implements OnInit, OnDestroy, AfterViewInit {
   music: Music = {
-    musicId: 0,
-    musicName: '',
+    name: '',
     musicer: '',
-    musicSrc: ''
+    path: ''
   };
   musicList: Music[] = [];
   avatarUrl = 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png';
@@ -27,9 +26,10 @@ export class MusicComponent implements OnInit, OnDestroy, AfterViewInit {
   private musicList$: Subscription;
   constructor(private message: NzMessageService,
     private musicService: MusicService) {
-    this.musicList$ = this.musicService.queryMusicList().subscribe(rsp => {
+    this.musicList$ = this.musicService.queryMusicList().subscribe((rsp: any) => {
       this.musicList = rsp;
       this.music = this.musicList[0];
+      console.log(this.music);
     }, error => {
     });
   }
@@ -101,13 +101,13 @@ export class MusicComponent implements OnInit, OnDestroy, AfterViewInit {
     const currentOrder = this.musicList.indexOf(this.music);
     if (currentOrder > 0) {
       this.music = this.musicList[currentOrder - 1];
-      this.audio.src = this.music.musicSrc;
+      this.audio.src = this.music.path;
       if (!this.paused) {
         this.audio.play();
       }
     } else {
       this.music = this.musicList[this.musicList.length - 1];
-      this.audio.src = this.music.musicSrc;
+      this.audio.src = this.music.path;
       if (!this.paused) {
         this.audio.play();
       }
@@ -126,14 +126,14 @@ export class MusicComponent implements OnInit, OnDestroy, AfterViewInit {
     const currentOrder = this.musicList.indexOf(this.music);
     if (currentOrder < this.musicList.length - 1) {
       this.music = this.musicList[currentOrder + 1];
-      this.audio.src = this.music.musicSrc;
+      this.audio.src = this.music.path;
       if (!this.paused) {
         this.audio.play();
       }
     } else {
       this.music = this.musicList[0];
       this.audio.pause();
-      this.audio.src = this.music.musicSrc;
+      this.audio.src = this.music.path;
       if (!this.paused) {
         this.audio.play();
       }
