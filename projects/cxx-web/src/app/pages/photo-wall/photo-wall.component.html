@@ -1,8 +1,11 @@
 <div [@listAnim]="imgs?imgs.length:''" class="container">
   <div nz-col *ngFor="let img of imgs" class="flip">
     <div [@rotate]="img.frontOrBack" class="front">
-      <i class="anticon anticon-retweet" (click)="rotate(img)"></i>
       <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" style="width:100%">
+      <div class="front-shadow">
+        <i class="anticon anticon-retweet" (click)="rotate(img)"></i>
+        <span class="preview"><i class="anticon anticon-eye-o" (click)="preview(modalContent, img)"></i></span>
+      </div>
     </div>
     <nz-card [@rotate]="img.relativeFrontOrBack" class="back">
       <i class="anticon anticon-retweet" (click)="rotate(img)"></i>
@@ -10,3 +13,8 @@
     </nz-card>
   </div>
 </div>
+
+
+<ng-template #modalContent>
+  <img [src]="previewImage" [ngStyle]="{ 'width': '100%' }" />
+</ng-template>

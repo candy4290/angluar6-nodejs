@@ -45,6 +45,8 @@ export class MusicComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.audio = this.cxxmusic.nativeElement;
+    this.audio.src = this.music.path;
+
   }
 
   playOrPause() {

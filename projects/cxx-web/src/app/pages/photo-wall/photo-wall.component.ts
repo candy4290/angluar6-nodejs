@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { listAnimm, rotateAnimm } from 'cxx-lib';
+import { NzModalService, NzModalRef } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-photo-wall',
@@ -8,15 +9,17 @@ import { listAnimm, rotateAnimm } from 'cxx-lib';
   animations: [listAnimm, rotateAnimm]
 })
 export class PhotoWallComponent implements OnInit {
-  imgs = [{frontOrBack: 'front', relativeFrontOrBack: 'back'},
-  {frontOrBack: 'front', relativeFrontOrBack: 'back'},
-  {frontOrBack: 'front', relativeFrontOrBack: 'back'},
-  {frontOrBack: 'front', relativeFrontOrBack: 'back'},
-  {frontOrBack: 'front', relativeFrontOrBack: 'back'},
-  {frontOrBack: 'front', relativeFrontOrBack: 'back'}];
+  previewImage: string;
+  imgs = [{frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'},
+  {frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'},
+  {frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'},
+  {frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'},
+  {frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'},
+  {frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'}];
   frontOrBack = 'front';
   relativeFrontOrBack = 'back';
-  constructor() { }
+  private _modalService: NzModalRef;
+  constructor(private modal: NzModalService) { }
 
   ngOnInit() {
   }
@@ -34,6 +37,16 @@ export class PhotoWallComponent implements OnInit {
       img.frontOrBack = 'front';
       img.relativeFrontOrBack = 'back';
     }
+  }
+
+  preview(tplContent: TemplateRef<{}>, img: any) {
+    this.previewImage = img.url;
+    this._modalService = this.modal.create({
+      nzContent: tplContent,
+      nzClosable: true,
+      nzFooter: null,
+      nzOnCancel: () => this._modalService.close
+    });
   }
 
 }

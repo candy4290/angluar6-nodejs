@@ -1,3 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import './../../cxx-lib/src/lib/theme/ng-zorro-antd-theme.less';
+@import "./../../cxx-lib/src/lib/theme/ng-zorro-antd-theme.less";
+// @media only screen and (min-width: 320px) and (max-width: 480px) {
+//   body {
+//     background: yellow;
+//   }
+// }
+// /* 平板之类的宽度 1024 以下设备 */
+// @media only screen and (min-width: 481px) and (max-width: 1024px) {
+//   body {
+//     background: blue;
+//   }
+// }
