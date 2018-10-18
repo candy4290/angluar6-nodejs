@@ -1,7 +1,7 @@
 <div [@listAnim]="imgs?imgs.length:''" class="container">
   <div nz-col *ngFor="let img of imgs" class="flip">
     <div [@rotate]="img.frontOrBack" class="front">
-      <img src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" style="width:100%">
+      <img [src]="img.url" style="height:188px;width:150px;">
       <div class="front-shadow">
         <i class="anticon anticon-retweet" (click)="rotate(img)"></i>
         <span class="preview"><i class="anticon anticon-eye-o" (click)="preview(modalContent, img)"></i></span>
@@ -11,6 +11,17 @@
       <i class="anticon anticon-retweet" (click)="rotate(img)"></i>
       <p>背后的故事</p>
     </nz-card>
+  </div>
+  <div nz-col class="flip">
+    <div style="width:150px;height:188px">
+      <nz-upload [nzListType]="'picture-card'" [nzShowUploadList]="false"
+      nzAction="http://localhost:8081/upload/"
+      (nzChange)="handleChange($event)"
+      nzName="files">
+        <i class="anticon anticon-plus"></i>
+        <div class="ant-upload-text">上传</div>
+      </nz-upload>
+    </div>
   </div>
 </div>
 
