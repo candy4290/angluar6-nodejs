@@ -1,7 +1,9 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
 import { listAnimm, rotateAnimm } from 'cxx-lib';
 import { NzModalService, NzModalRef, NzMessageService, UploadFile } from 'ng-zorro-antd';
 import { PhotoWallService } from './photo-wall.service';
+import { AppService } from '../../app.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-photo-wall',
@@ -9,32 +11,34 @@ import { PhotoWallService } from './photo-wall.service';
   styleUrls: ['./photo-wall.component.scss'],
   animations: [listAnimm, rotateAnimm]
 })
-export class PhotoWallComponent implements OnInit {
+export class PhotoWallComponent implements OnInit, OnDestroy {
   previewImage: string;
   imgs = [
-    // {frontOrBack: 'front', relativeFrontOrBack: 'back', url: '/65J7vV2qRgTNrVDEsIL7lZdz.jpg'},
-  // {frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'},
-  // {frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'},
-  // {frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'},
-  // {frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'},
-  // {frontOrBack: 'front', relativeFrontOrBack: 'back', url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'}
-];
+  ];
   frontOrBack = 'front';
   relativeFrontOrBack = 'back';
   private _modalService: NzModalRef;
+  private getPhotoList$: Subscription;
   constructor(private modal: NzModalService,
-              private msg: NzMessageService,
-              private phototWallService: PhotoWallService) { }
+    private msg: NzMessageService,
+    private phototWallService: PhotoWallService,
+    private appService: AppService) { }
 
   ngOnInit() {
     this.phototWallService.getPhotoList().subscribe((res: any) => {
       res.forEach(item => {
         item.frontOrBack = 'front';
         item.relativeFrontOrBack = 'back';
-        item.url = 'http://localhost:8081/' + item.path;
+        item.url = this.appService.defaultUrl + item.path;
       });
       this.imgs = res;
     });
+  }
+
+  ngOnDestroy() {
+    if (this.getPhotoList$) {
+      this.getPhotoList$.unsubscribe();
+    }
   }
 
   /**
@@ -85,7 +89,6 @@ export class PhotoWallComponent implements OnInit {
       return;
     }
     if (info.file.status === 'done') {
-      console.log('---');
       // Get this url from response in real world.
       this.getBase64(info.file.originFileObj, (img: string) => {
         this.imgs.push({

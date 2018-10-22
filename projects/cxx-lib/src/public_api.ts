@@ -8,3 +8,4 @@ export * from './lib/animations/fly-in';
 export * from './lib/animations/item.anim';
 export * from './lib/animations/list.anim';
 export * from './lib/animations/rotate.anim';
+export * from './lib/intercept/request-interceptor';
