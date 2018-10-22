@@ -20,7 +20,12 @@
             "tsConfig": "projects/cxx-web/tsconfig.app.json",
             "assets": [
               "projects/cxx-web/src/favicon.ico",
-              "projects/cxx-web/src/assets"
+              "projects/cxx-web/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "projects/cxx-web/src/styles.scss"

@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 // import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule } from '@angular/material';
 // import { LayoutModule } from '@angular/cdk/layout';
 import { AppRoutes } from './app.routes';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { AppRoutes } from './app.routes';
     AppRoutes,
     BrowserAnimationsModule,
     BrowserModule,
+    HttpClientModule
     // MatGridListModule,
     // MatCardModule,
     // MatMenuModule,
