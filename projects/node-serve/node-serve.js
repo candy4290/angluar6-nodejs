@@ -85,7 +85,6 @@ app.post('/upload', mutipartMiddeware, function(req, res) {
     if (err) {
       console.log('查询数据失败');
     } else {
-      console.log(data);
       res.end(JSON.stringify(result));
     }
   })

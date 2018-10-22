@@ -82,8 +82,6 @@ export class PhotoWallComponent implements OnInit {
 
   handleChange(info: { file: UploadFile }): void {
     if (info.file.status === 'uploading') {
-      // this.loading = true;
-      console.log('+++');
       return;
     }
     if (info.file.status === 'done') {
@@ -93,8 +91,6 @@ export class PhotoWallComponent implements OnInit {
         this.imgs.push({
           frontOrBack: 'front', relativeFrontOrBack: 'back', url: img
         });
-        // this.loading = false;
-        // this.avatarUrl = img;
       });
     }
   }
