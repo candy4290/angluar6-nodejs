@@ -15,7 +15,6 @@ export class ThreeDComponent implements OnInit {
   }
 
   mousedown(ev: any) {
-    console.log('mousedown');
     const event = window.event || ev;
     const disY = event.clientX - this.y;
     const disX = event.clientY - this.x;
@@ -27,7 +26,6 @@ export class ThreeDComponent implements OnInit {
       this.box.nativeElement.style.transform = 'perspective(800px) rotateY(' + this.y + 'deg) rotateX(' + this.x + 'deg)';
     }.bind(this);
     document.onmouseup = function () {
-      console.log('clear');
       document.onmousemove = null;
     };
   }
