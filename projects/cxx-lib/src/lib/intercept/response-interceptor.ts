@@ -4,7 +4,7 @@ import {
 } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { filter, tap, switchMap, mergeMap } from 'rxjs/operators';
+import { filter, switchMap } from 'rxjs/operators';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
