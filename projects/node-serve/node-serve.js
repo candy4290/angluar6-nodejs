@@ -1,27 +1,18 @@
 //express_demo.js 文件
+var jdbc = require('./jdbc');
 var express = require('express');
-var mysql      = require('mysql');
 var mutipart = require('connect-multiparty');
-var path = require('path');
 // var multer  = require('multer');
 var app = express();
 var mutipartMiddeware = mutipart();
 var bodyParser = require('body-parser');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '1qaz@WSX',
-  port: '3306',
-  database : 'cxx'
-});
-
-connection.connect();
 // 创建 application/x-www-form-urlencoded 编码解析
 app.use(express.static('imgs'));
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(multer({ dest: '/tmp/'}).array('image'));
 app.use(bodyParser.json({ limit: '1mb' }));  //这里指定参数使用 json 格式
 app.use(mutipart({uploadDir: './imgs'}));
+jdbc.handleDisconnection();
 //设置跨域访问
 app.all('*', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -42,7 +33,7 @@ app.get('/', function (req, res) {
   res.end(JSON.stringify(req.body));
 });
 app.post('/musicList', function (req, res) {
-  connection.query('SELECT * from mp3s', function (error, results, fields) {
+  jdbc.connection.query('SELECT * from mp3s', function (error, results, fields) {
     if (error) throw error;
     // 输出 JSON 格式
     const result = {
@@ -56,7 +47,7 @@ app.post('/musicList', function (req, res) {
   });
 });
 app.post('/photos', function(req, res) {
-  connection.query('select * from photos', function(err, results, fields) {
+  jdbc.connection.query('select * from photos', function(err, results, fields) {
     if(err) {
 
     } else {
@@ -81,7 +72,7 @@ app.post('/upload', mutipartMiddeware, function(req, res) {
     },
     rtnMsg: 'SUCCESS'
   };
-  connection.query('insert into photos set ?', {name: photo.originalFilename, path: photo.path.slice(5), size: photo.size}, function(err, data) {
+  jdbc.connection.query('insert into photos set ?', {name: photo.originalFilename, path: photo.path.slice(5), size: photo.size}, function(err, data) {
     if (err) {
       console.log('查询数据失败');
     } else {

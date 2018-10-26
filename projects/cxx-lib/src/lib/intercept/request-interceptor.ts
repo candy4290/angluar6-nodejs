@@ -4,18 +4,18 @@ import {
 } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { ConfigService } from '../service/config.service';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
-  constructor() {
-    console.log('interceptor');
+  constructor(private config: ConfigService) {
   }
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
     if (req.method === 'POST') {
       const newReq = req.clone({
-        url: 'http://localhost:8081/' + req.url
+        url: this.config.getIpAndPort() + req.url
       });
       return next.handle(newReq);
     }

@@ -1,15 +1,27 @@
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '1qaz@WSX',
-  port: '3306',
-  database : 'Cxx'
-});
+var mysql = require('mysql');
+var mysql_config = {
+    host: 'localhost',
+    user:'root',
+    password:'1qaz@WSX',
+    database:'cxx'
+};
+function handleDisconnection() {
+   var connection = mysql.createConnection(mysql_config);
+    connection.connect(function(err) {
+        if(err) {
+            setTimeout('handleDisconnection()', 2000);
+        }
+    });
 
-connection.connect();
-
-connection.query('SELECT * from mp3s', function (error, results, fields) {
-  if (error) throw error;
-  console.log('The solution is: ', results[0]);
-});
+    connection.on('error', function(err) {
+        logger.error('db error', err);
+        if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+            logger.error('db error执行重连:'+err.message);
+            handleDisconnection();
+        } else {
+            throw err;
+        }
+    });
+    exports.connection = connection;
+}
+exports.handleDisconnection =  handleDisconnection;
