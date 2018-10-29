@@ -1,9 +1,9 @@
 #box {
   width: 200px;
   height: 200px;
-  margin: 0px auto;
-  position: relative;
-
+  position: absolute;
+  top: 100px;
+  right: 100px;
   /*给父级设置3d空间*/
   transform-style: preserve-3d;
   /*设置景深*/
@@ -14,7 +14,6 @@
 #box div {
   width: 100%;
   height: 100%;
-  border: 1px solid black;
   position: absolute;
   opacity: 0.7;
 }
