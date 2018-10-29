@@ -1,0 +1,50 @@
+#box {
+  position: absolute;
+  /*给父级设置3d空间*/
+  transform-style: preserve-3d;
+  /*设置景深*/
+  /*perspective: 800px;*/
+  transform: perspective(8000px) rotateY(-60deg) rotateX(30deg);
+}
+
+#box div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0.7;
+}
+
+/*前面*/
+#box div:nth-child(1) {
+  background: palegreen;
+}
+
+/*后面*/
+#box div:nth-child(2) {
+  background: palevioletred;
+}
+
+/*左面*/
+#box div:nth-child(3) {
+  background: plum;
+}
+
+/*右面*/
+#box div:nth-child(4) {
+  background: peru;
+}
+
+/*上面*/
+#box div:nth-child(5) {
+  background: palegoldenrod;
+}
+
+/*下面*/
+#box div:nth-child(6) {
+  background: paleturquoise;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
