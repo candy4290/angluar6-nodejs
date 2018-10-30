@@ -19,6 +19,7 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
   relativeFrontOrBack = 'back';
   private _modalService: NzModalRef;
   private getPhotoList$: Subscription;
+  private deletePhotoById$: Subscription;
   constructor(private modal: NzModalService,
     private msg: NzMessageService,
     private phototWallService: PhotoWallService,
@@ -38,6 +39,9 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.getPhotoList$) {
       this.getPhotoList$.unsubscribe();
+    }
+    if (this.deletePhotoById$) {
+      this.deletePhotoById$.unsubscribe();
     }
   }
 
@@ -90,12 +94,23 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
     }
     if (info.file.status === 'done') {
       // Get this url from response in real world.
-      this.getBase64(info.file.originFileObj, (img: string) => {
-        this.imgs.push({
-          frontOrBack: 'front', relativeFrontOrBack: 'back', url: img
-        });
+      this.imgs.push({
+        frontOrBack: 'front',
+        relativeFrontOrBack: 'back',
+        url: this.appService.defaultUrl + info.file.response.path,
+        path: info.file.response.path,
+        id: info.file.response.id
       });
+      console.log(this.imgs);
     }
+  }
+
+  delete(img: any) {
+    this.deletePhotoById$ = this.phototWallService.deletePhotoById(img.id, img.path).subscribe(rsp => {
+      this.imgs = [].concat(this.imgs.filter(item => item.id !== img.id));
+    }, error => {
+      this.msg.error('删除失败！');
+    });
   }
 
 }

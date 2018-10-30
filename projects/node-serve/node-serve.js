@@ -1,4 +1,5 @@
 //express_demo.js 文件
+var fs = require('fs');
 var jdbc = require('./jdbc');
 var express = require('express');
 var mutipart = require('connect-multiparty');
@@ -62,17 +63,37 @@ app.post('/photos', function(req, res) {
     }
   })
 })
+app.post('/deletePhoto', function(req, res) {
+  const result = {
+    rtnCode: '000000',
+    rtnData: null,
+    rtnMsg: 'SUCCESS'
+  };
+  jdbc.connection.query('delete from photos where id = ?', [req.body.id], function(err, data) {
+    if (err) {
+      console.log('删除数据失败');
+    } else {
+      fs.unlink('./imgs/' + req.body.path, function(error) {
+        if (!error) {
+          res.end(JSON.stringify(result));
+        }
+      });
+    }
+  })
+})
 
 app.post('/upload', mutipartMiddeware, function(req, res) {
   const photo = req.files.files;
   const result = {
     rtnCode: '000000',
     rtnData: {
-      path: photo.path.slice(5)
+      path: photo.path.slice(5),
+      id: null
     },
     rtnMsg: 'SUCCESS'
   };
   jdbc.connection.query('insert into photos set ?', {name: photo.originalFilename, path: photo.path.slice(5), size: photo.size}, function(err, data) {
+    result.rtnData.id = data.insertId;
     if (err) {
       console.log('查询数据失败');
     } else {

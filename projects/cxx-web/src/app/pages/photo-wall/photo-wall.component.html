@@ -4,7 +4,10 @@
       <img [src]="img.url" style="height:188px;width:150px;">
       <div class="front-shadow">
         <i class="anticon anticon-retweet" (click)="rotate(img)"></i>
-        <span class="preview"><i class="anticon anticon-eye-o" (click)="preview(modalContent, img)"></i></span>
+        <span class="preview">
+          <i nz-icon type="eye" theme="outline" (click)="preview(modalContent, img)"></i>
+          <i nz-icon type="delete" theme="outline" style="margin-left:4px;" (click)="delete(img)"></i>
+        </span>
       </div>
     </div>
     <nz-card [@rotate]="img.relativeFrontOrBack" class="back">

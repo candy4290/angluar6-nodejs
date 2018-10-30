@@ -15,4 +15,19 @@ export class PhotoWallService {
   getPhotoList() {
     return this.http.post(`photos`, {}).pipe(map((rsp: any) => rsp.list));
   }
+
+  /**
+   *根据编号删除图片
+   *
+   * @param {*} id
+   * @returns
+   * @memberof PhotoWallService
+   */
+  deletePhotoById(id: any, path: any) {
+    const req = {
+      id: id,
+      path: path
+    };
+    return this.http.post('deletePhoto', req);
+  }
 }
