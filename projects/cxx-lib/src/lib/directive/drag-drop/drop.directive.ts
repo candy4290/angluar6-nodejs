@@ -15,11 +15,8 @@ export class DropDirective {
   @HostListener('dragenter', ['$event'])
   onDragEnter(ev: Event) {
     this.service.dropData = this.dropData;
-    console.log('---');
     ev.preventDefault();
     ev.stopPropagation();
-    console.log(this.el.nativeElement);
-    console.log(ev.target);
     // if (this.el.nativeElement === ev.target) {
     //   console.log('+++');
     //   // this.data$.subscribe(dragData => {
@@ -30,11 +27,7 @@ export class DropDirective {
     // }
     if (this.service.dragData !== this.dropData) {
       console.log('+++');
-      // this.data$.subscribe(dragData => {
-      //   if (this.dropTags.indexOf(dragData.tag) > -1) {
-          this.rd.addClass(this.el.nativeElement, this.dragEnterClass);
-      //   }
-      // });
+      this.rd.addClass(this.el.nativeElement, this.dragEnterClass);
     }
   }
 

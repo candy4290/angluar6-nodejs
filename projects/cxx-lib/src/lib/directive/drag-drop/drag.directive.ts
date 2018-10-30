@@ -24,10 +24,9 @@ export class DragDirective {
               ) { }
   @HostListener('dragstart', ['$event'])
   onDragStart(ev: Event) {
-    this.service.dragData = this.dragData;
     if (this.el.nativeElement === ev.target) {
       this.rd.addClass(this.el.nativeElement, this.draggedClass);
-      // this.service.setDragData({tag: this.dragTag, data: this.dragData});
+      this.service.dragData = this.dragData;
     }
   }
 
