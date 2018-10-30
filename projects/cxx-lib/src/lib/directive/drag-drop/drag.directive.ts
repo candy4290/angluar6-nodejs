@@ -1,11 +1,13 @@
 import { Directive, Input, ElementRef, Renderer2, HostListener } from '@angular/core';
+import { DragDropService } from './drag-drop.service';
 
 @Directive({
-  selector: '[libDrag]'
+  selector: '[libDrag][dragData][draggedClass]'
 })
 export class DragDirective {
 
   private _isDraggable = false;
+  @Input() dragData: any;
   @Input('appDraggable')
   set Draggable(val: boolean) {
     this._isDraggable = val;
@@ -16,13 +18,13 @@ export class DragDirective {
   }
   @Input() draggedClass: string;
   @Input() dragTag: string;
-  @Input() dragData: any;
   constructor(private el: ElementRef,
               private rd: Renderer2,
-              // private service: DragDropService
+              private service: DragDropService
               ) { }
   @HostListener('dragstart', ['$event'])
   onDragStart(ev: Event) {
+    this.service.dragData = this.dragData;
     if (this.el.nativeElement === ev.target) {
       this.rd.addClass(this.el.nativeElement, this.draggedClass);
       // this.service.setDragData({tag: this.dragTag, data: this.dragData});

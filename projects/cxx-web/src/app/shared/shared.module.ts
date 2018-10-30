@@ -4,6 +4,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MagicSquareModule } from './components/magic-square/magic-square.module';
+import { DirectiveModule } from 'cxx-lib';
 
 @NgModule({
   exports: [
@@ -12,7 +13,8 @@ import { MagicSquareModule } from './components/magic-square/magic-square.module
     NgZorroAntdModule,
     FormsModule,
     ReactiveFormsModule,
-    MagicSquareModule
+    MagicSquareModule,
+    DirectiveModule
   ]
 })
 export class SharedModule { }

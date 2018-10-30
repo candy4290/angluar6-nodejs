@@ -82,12 +82,6 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
     return isJPG && isLt2M;
   }
 
-  private getBase64(img: File, callback: (img: {}) => void): void {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result));
-    reader.readAsDataURL(img);
-  }
-
   handleChange(info: { file: UploadFile }): void {
     if (info.file.status === 'uploading') {
       return;
@@ -111,6 +105,11 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
     }, error => {
       this.msg.error('删除失败！');
     });
+  }
+
+  changeOrder(event: any) {
+    console.log('---');
+    console.log(event);
   }
 
 }

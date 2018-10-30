@@ -21,6 +21,7 @@
   position: relative;
   transform-style: preserve-3d;
   margin-top: 8px;
+  border: 2px solid #fff;
 }
 .front,
 .back {
@@ -77,6 +78,13 @@
     cursor: pointer;
     opacity: 1;
   }
+}
+.drag-start {
+  opacity: 0.5;
+  border: 2px dashed #ff525b;
+}
+.drag-enter {
+  border: 2px dashed green;
 }
 :host ::ng-deep .ant-upload.ant-upload-select-picture-card {
   width: 100%;

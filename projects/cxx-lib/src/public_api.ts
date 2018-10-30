@@ -11,3 +11,4 @@ export * from './lib/animations/rotate.anim';
 export * from './lib/intercept/request-interceptor';
 export * from './lib/intercept/response-interceptor';
 export * from './lib/service/config.service';
+export * from './lib/directive/directive.module';
