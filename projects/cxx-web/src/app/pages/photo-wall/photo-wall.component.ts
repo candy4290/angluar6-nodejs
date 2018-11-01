@@ -116,7 +116,7 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
     const dragData = event.dragData;
     const dropData = event.dropData;
     this.changeOrder$ = this.phototWallService.changeOrder(dragData, dropData).subscribe(rsp => {
-      Util.swapArray(this.imgs, this.imgs.indexOf(dragData), this.imgs.indexOf(dropData));
+      this.ngOnInit();
     });
   }
 

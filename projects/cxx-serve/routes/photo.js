@@ -53,9 +53,9 @@ router.post('/deleteById', function(req, res) {
 router.post('/changeOrder', function(req, res) {
     const dragData = req.body.dragData;
     const dropData = req.body.dropData;
-    photoDAO.update(dragData, dropData, function(success) {});
-    photoDAO.update(dropData, dragData, function(success) {});
-    res.json(result.createResult(true, null));
+    photoDAO.update(dragData, dropData, function(success) {
+      res.json(result.createResult(true, success));
+    });
 })
 
 module.exports = router;

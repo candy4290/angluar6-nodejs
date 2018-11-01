@@ -23,8 +23,20 @@ module.exports = {
         })
     },
     update: function(dragData, dropData, callback) {
+      var promise = new Promise(function(resolve, reject) {
         pool.query(photoSqlMap.update, [dragData.name, dragData.path, dragData.size, dropData.id], function(error, result) {
-            callback(result.affectedRows > 0);
+          if (error) throw error;
+          resolve(result);
         });
+      })
+      var promise1 = new Promise(function(resolve, reject) {
+        pool.query(photoSqlMap.update, [dropData.name, dropData.path, dropData.size, dragData.id], function(error, result) {
+          if (error) throw error;
+          resolve(result);
+        });
+      })
+      Promise.all([promise, promise1]).then(function(data) {
+        callback(data);
+      });
     }
 }
