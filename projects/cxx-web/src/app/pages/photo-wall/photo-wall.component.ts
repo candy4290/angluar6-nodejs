@@ -4,6 +4,7 @@ import { NzModalService, NzModalRef, NzMessageService, UploadFile } from 'ng-zor
 import { PhotoWallService } from './photo-wall.service';
 import { AppService } from '../../app.service';
 import { Subscription } from 'rxjs';
+import { Util } from '../../../../../cxx-lib/src/lib/utils/util';
 
 @Component({
   selector: 'app-photo-wall',
@@ -20,6 +21,7 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
   private _modalService: NzModalRef;
   private getPhotoList$: Subscription;
   private deletePhotoById$: Subscription;
+  private changeOrder$: Subscription;
   constructor(private modal: NzModalService,
     private msg: NzMessageService,
     private phototWallService: PhotoWallService,
@@ -42,6 +44,9 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
     }
     if (this.deletePhotoById$) {
       this.deletePhotoById$.unsubscribe();
+    }
+    if (this.changeOrder$) {
+      this.changeOrder$.unsubscribe();
     }
   }
 
@@ -87,15 +92,14 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
       return;
     }
     if (info.file.status === 'done') {
-      // Get this url from response in real world.
       this.imgs.push({
         frontOrBack: 'front',
         relativeFrontOrBack: 'back',
         url: this.appService.defaultUrl + info.file.response.path,
         path: info.file.response.path,
-        id: info.file.response.id
+        id: info.file.response.id,
+        name: info.file.response.name
       });
-      console.log(this.imgs);
     }
   }
 
@@ -108,8 +112,11 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
   }
 
   changeOrder(event: any) {
-    console.log('---');
-    console.log(event);
+    const dragData = event.dragData;
+    const dropData = event.dropData;
+    this.changeOrder$ = this.phototWallService.changeOrder(dragData, dropData).subscribe(rsp => {
+      Util.swapArray(this.imgs, this.imgs.indexOf(dragData), this.imgs.indexOf(dropData));
+    });
   }
 
 }

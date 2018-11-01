@@ -13,7 +13,7 @@ export class PhotoWallService {
    * @memberof PhotoWallService
    */
   getPhotoList() {
-    return this.http.post(`photos`, {}).pipe(map((rsp: any) => rsp.list));
+    return this.http.post(`photo/list`, {}).pipe(map((rsp: any) => rsp.photoList));
   }
 
   /**
@@ -28,6 +28,14 @@ export class PhotoWallService {
       id: id,
       path: path
     };
-    return this.http.post('deletePhoto', req);
+    return this.http.post('photo/deleteById', req);
+  }
+
+  changeOrder(dragData: any, dropData: any) {
+    const req = {
+      dragData: dragData,
+      dropData: dropData
+    };
+    return this.http.post('photo/changeOrder', req);
   }
 }

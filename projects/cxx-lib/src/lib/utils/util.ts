@@ -92,4 +92,18 @@ export class Util {
     return true;
   }
 
+  /**
+   *调换数组array中两个索引分别为index1，index2两个元素的位置
+   *
+   * @static
+   * @param {any[]} arr
+   * @param {number} index1
+   * @param {number} index2
+   * @memberof Util
+   */
+  static swapArray(arr: any[], index1: number, index2: number) {
+    arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+    return arr;
+  }
+
 }

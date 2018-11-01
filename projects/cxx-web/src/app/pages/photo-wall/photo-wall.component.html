@@ -6,7 +6,8 @@
     libDrop
     [appDraggable]="true"
     [dropData]="img"
-    [dragEnterClass]="'drag-enter'">
+    [dragEnterClass]="'drag-enter'"
+    (dropped)="changeOrder($event)">
     <div [@rotate]="img.frontOrBack" class="front">
       <img [src]="img.url" style="height:188px;width:150px;">
       <div class="front-shadow">
@@ -25,7 +26,7 @@
   <div nz-col class="flip">
     <div style="width:150px;height:188px">
       <nz-upload [nzListType]="'picture-card'" [nzShowUploadList]="false"
-      nzAction="upload/"
+      nzAction="photo/upload/"
       (nzChange)="handleChange($event)"
       nzName="files">
         <i nz-icon type="plus" theme="outline"></i>
