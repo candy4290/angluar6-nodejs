@@ -39,4 +39,4 @@ testem.log
 Thumbs.db
 
 # upload imgs
-/projects/node-serve/imgs/*
+/projects/cxx-serve/public/images

@@ -70,6 +70,7 @@ export class PhotoWallComponent implements OnInit, OnDestroy {
     this._modalService = this.modal.create({
       nzContent: tplContent,
       nzClosable: true,
+      nzWidth: document.body.clientWidth - 48,
       nzFooter: null,
       nzOnCancel: () => this._modalService.close
     });
