@@ -1,4 +1,4 @@
-# Cxx
+# Angular6+前台 nodejs后台 mysql数据库
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
 
