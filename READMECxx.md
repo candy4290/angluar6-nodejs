@@ -141,3 +141,12 @@ $theme-day-body-background-color1:red
 ## Rxjs操作符
 concat: 按照顺序，前一个observable完成了再订阅下一个observable并发出值
 
+## npm版本号
+x.y.z(大版本.次要版本.小版本)
+～1.2.2 （表示安装1.2.x的最新版本，不低于1.2.2，但不安装1.3.x,也就是说安装时不改变大版本号和次要版本号）
+^1.2.2（表示安装1.x.x的最新版本，不低于1.2.2，但不安装2.x.x，也就是说安装时不改变大版本号，如果大版本号是0则，与～的规则一致）
+
+## package.json
+dependencies、devDependencies 的区别：dependencies 表示我们要在生产环境下使用该依赖，devDependencies 则表示我们仅在开发环境使用该依赖。
+--save-prod 将依赖的名称、版本要求写入 dependencies
+--save-dev 将依赖的名称、版本要求写入 devDependencies

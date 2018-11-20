@@ -40,3 +40,5 @@ Thumbs.db
 
 # upload imgs
 /projects/cxx-serve/public/images
+
+projects/cxx-serve/node_modules
