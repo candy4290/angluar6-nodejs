@@ -13,7 +13,6 @@ export class RequestInterceptor implements HttpInterceptor {
   }
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-      console.log(req.url, req.withCredentials);
     if (req.method === 'POST') {
       const newReq = req.clone({
         url: this.config.getIpAndPort() + req.url,

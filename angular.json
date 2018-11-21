@@ -49,6 +49,14 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/cxx-web/src/environments/environment.ts",
+                  "with": "projects/cxx-web/src/environments/environment.hmr.ts"
+                }
+              ]
             }
           }
         },
@@ -60,6 +68,10 @@
           "configurations": {
             "production": {
               "browserTarget": "cxx-web:build:production"
+            },
+            "hmr": {
+              "hmr": true,
+              "browserTarget": "cxx-web:build:hmr"
             }
           }
         },
