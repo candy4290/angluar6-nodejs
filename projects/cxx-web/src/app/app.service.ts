@@ -10,10 +10,4 @@ export class AppService {
   constructor(private http: HttpClient) {
   }
 
-  ipAndPort() {
-    return this.http.get('assets/config/app.json').pipe(tap((rsp: any) => {
-      this.defaultUrl =  rsp.api.protocol + '//' + rsp.api.host + ':' + rsp.api.port + '/';
-    }));
-  }
-
 }

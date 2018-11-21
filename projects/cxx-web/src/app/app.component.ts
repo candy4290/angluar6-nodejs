@@ -43,12 +43,8 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
   ngOnInit() {
-    this.ipAndPort$ = this.app.ipAndPort().subscribe();
   }
 
   ngOnDestroy() {
-    if (this.ipAndPort$) {
-      this.ipAndPort$.unsubscribe();
-    }
   }
 }
