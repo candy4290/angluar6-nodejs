@@ -152,3 +152,5 @@ dependencies、devDependencies 的区别：dependencies 表示我们要在生产
 --save-dev 将依赖的名称、版本要求写入 devDependencies
 
 git tag
+
+after tag v1.0.0
