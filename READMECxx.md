@@ -150,3 +150,5 @@ x.y.z(大版本.次要版本.小版本)
 dependencies、devDependencies 的区别：dependencies 表示我们要在生产环境下使用该依赖，devDependencies 则表示我们仅在开发环境使用该依赖。
 --save-prod 将依赖的名称、版本要求写入 dependencies
 --save-dev 将依赖的名称、版本要求写入 devDependencies
+
+git tag
