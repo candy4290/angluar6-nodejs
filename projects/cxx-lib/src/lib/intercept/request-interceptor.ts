@@ -15,7 +15,8 @@ export class RequestInterceptor implements HttpInterceptor {
     Observable<HttpEvent<any>> {
     if (req.method === 'POST') {
       const newReq = req.clone({
-        url: this.config.getIpAndPort() + req.url
+        url: this.config.getIpAndPort() + req.url,
+        withCredentials: true
       });
       return next.handle(newReq);
     }

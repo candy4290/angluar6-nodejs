@@ -4,7 +4,6 @@ import { NzModalService, NzModalRef, NzMessageService, UploadFile } from 'ng-zor
 import { PhotoWallService } from './photo-wall.service';
 import { AppService } from '../../app.service';
 import { Subscription } from 'rxjs';
-import { Util } from '../../../../../cxx-lib/src/lib/utils/util';
 
 @Component({
   selector: 'app-photo-wall',

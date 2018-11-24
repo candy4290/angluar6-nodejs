@@ -5,11 +5,12 @@ import {
 
 import { Observable, of } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
+import { NzMessageService } from 'ng-zorro-antd';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
-  constructor() {
+  constructor(private message: NzMessageService) {
   }
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
@@ -18,6 +19,9 @@ export class ResponseInterceptor implements HttpInterceptor {
         .pipe(
           filter((event) => event instanceof HttpResponse),
           switchMap((event: any) => {
+            if (!event.body.success) {
+              this.message.error(event.body.rtnData);
+            }
             event.body = event.body.rtnData;
             return of(event);
           })

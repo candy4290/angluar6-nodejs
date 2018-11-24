@@ -7,24 +7,11 @@ var router = express.Router();
 var photoDAO = require('../dao/photoDAO');
 var result = require('../model/result');
 
-//设置跨域访问
-router.all('*', function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With');
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    // res.header("Content-Type", "application/json;charset=utf-8;x-requested-with;application/x-www-form-urlencoded");
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-    } else {
-        next();
-    }
-});
-
 /* 查询照片列表 */
 router.post('/list', function (req, res) {
-    photoDAO.list(function (photos) {
-        res.json(result.createResult(true, {photoList: photos}));
-    });
+  photoDAO.list(function (photos) {
+      res.json(result.createResult(true, {photoList: photos}));
+  });
 });
 
 /* 上传文件至静态文件夹&存库 */

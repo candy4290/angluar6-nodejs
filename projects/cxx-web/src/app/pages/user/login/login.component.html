@@ -1,0 +1,49 @@
+<div class="pla-login-content">
+  <div class="wrap">
+    <div class="logo">
+      <!-- CXX -->
+    </div>
+    <div class="login-form-content">
+      <div class="form-name">账户登录</div>
+      <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixUserTemplate">
+              <input type="text" nz-input formControlName="userNameProlinkAdmin" placeholder="请输入用户名或手机号码" autocomplete="off">
+            </nz-input-group>
+            <nz-form-explain *ngIf="loginForm.get('userNameProlinkAdmin').dirty && loginForm.get('userNameProlinkAdmin').errors">用户名或手机号码不能为空！</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixPswTemplate">
+              <input type="password" nz-input formControlName="passwordProlinkAdmin" placeholder="请输入密码" autocomplete="off">
+            </nz-input-group>
+            <nz-form-explain *ngIf="loginForm.get('passwordProlinkAdmin').dirty && loginForm.get('passwordProlinkAdmin').errors">
+              <ng-container *ngIf="loginForm.get('passwordProlinkAdmin').hasError('required')">
+                密码不能为空！
+              </ng-container>
+              <ng-container *ngIf="loginForm.get('passwordProlinkAdmin').hasError('password')">
+                {{loginForm.get('passwordProlinkAdmin').getError('password').errorMsg}}
+              </ng-container>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <a class="login-form-forgot">注册</a>
+              <a class="login-form-forgot">忘记密码</a>
+            </div>
+            <button nz-button class="login-form-button" [nzType]="'primary'" [nzLoading]="loading">登录</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+    <div class="footer">
+        <!-- Copyright<i nz-icon type="copyright" theme="outline"></i> cxx -->
+    </div>
+  </div>
+</div>
+<ng-template #prefixUserTemplate><i nz-icon type="user"></i></ng-template>
+<ng-template #prefixPswTemplate><i nz-icon type="lock"></i></ng-template>

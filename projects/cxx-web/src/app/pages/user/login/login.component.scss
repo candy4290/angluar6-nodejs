@@ -1,0 +1,63 @@
+.pla-login-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: #f0f2f5;
+  background-image: url('/assets/imgs/login_bg2.svg');
+  background-repeat: no-repeat;
+  background-position: center 110px;
+  background-size: 100%;
+  .wrap {
+    padding: 112px 0 24px;
+    .logo {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+    .login-form-content {
+      display: block;
+      width: 450px;
+      height: 420px;
+      padding: 41px;
+      margin: 0 auto;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.8);
+      .form-name {
+        font-size: 16px;
+        margin-bottom: 43px;
+        text-align: center;
+        color: #cc9946;
+      }
+      .login-form {
+        max-width: 368px;
+        nz-form-item {
+          width: 368px;
+        }
+        input {
+          width: 368px;
+          height: 40px;
+        }
+        button {
+          width: 368px;
+          height: 40px;
+          margin-top: 20px;
+        }
+      }
+
+      .login-form-forgot {
+        float: right;
+      }
+
+      .login-form-button {
+        width: 100%;
+      }
+    }
+    .footer {
+      display: block;
+      padding: 0 16px;
+      margin: 48px 0 24px;
+      text-align: center;
+      color: rgba(0,0,0,.45);
+      font-size: 14px;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { AppRoutes } from './app.routes';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { RequestInterceptor, ResponseInterceptor, ConfigService } from 'cxx-lib';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 export function createRootInitializer(http: HttpClient, config: ConfigService) {
   return () => {
     return http.get('assets/config/app.json').toPromise().then((rsp: any) => {
@@ -21,13 +22,14 @@ export function createRootInitializer(http: HttpClient, config: ConfigService) {
     AppRoutes,
     BrowserAnimationsModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgZorroAntdModule
   ],
   providers: [
+    {provide: APP_INITIALIZER, useFactory: (createRootInitializer), deps: [HttpClient, ConfigService], multi: true},
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},
-    {provide: APP_INITIALIZER, useFactory: (createRootInitializer), deps: [HttpClient, ConfigService], multi: true}
   ],
   bootstrap: [AppComponent]
 })
