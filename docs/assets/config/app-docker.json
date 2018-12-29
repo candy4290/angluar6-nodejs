@@ -1,7 +1,0 @@
-{
-  "Origin": {
-    "url": "https://${h5_host_domain}"
-  },
-  "mobile": "https://${h5_host_domain}",
-  "pc": "https://${web_host_domain}"
-}
