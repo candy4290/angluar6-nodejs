@@ -5,7 +5,7 @@ import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   imports: [
-    SharedModule,
+    SharedModule.forRoot('www.baidu.com'),
     LoginRoutingModule
   ],
   declarations: [LoginComponent]

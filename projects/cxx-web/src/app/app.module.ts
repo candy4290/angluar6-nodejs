@@ -27,7 +27,7 @@ export function createRootInitializer(http: HttpClient, config: ConfigService) {
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: (createRootInitializer), deps: [HttpClient, ConfigService], multi: true},
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {provide: LocationStrategy, useClass: HashLocationStrategy },
     {provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},
   ],

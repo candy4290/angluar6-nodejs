@@ -154,3 +154,5 @@ dependencies、devDependencies 的区别：dependencies 表示我们要在生产
 git tag
 
 after tag v1.0.0
+
+# ctrl+alt+d(连续按两次生成注释)

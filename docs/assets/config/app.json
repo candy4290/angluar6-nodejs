@@ -1,7 +1,18 @@
 {
-  "api": {
-    "protocol": "http:",
-    "host": "localhost",
-    "port": "8081"
-  }
+  "// 1": "环境配置",
+  "profiles": {
+    "// 2": "激活配置",
+    "active": "dev"
+  },
+  "Origin": {
+    "url": "https://uat-h5.hljinke.com",
+    "default": "prolink",
+    "download": "/files/downloadProductFile",
+    "preview": "/files/preViewProductFile",
+    "upload": "/service/upload",
+    "web": "/service/web",
+    "img": "/files"
+  },
+  "mobile": "https://uat-h5.hljinke.com",
+  "pc": "https://uat-www.hljinke.com"
 }
