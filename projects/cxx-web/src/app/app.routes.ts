@@ -5,8 +5,8 @@ export const routes: Routes = [
   { path: 'user', loadChildren: './pages/user/user.module#UserModule' },
   { path: 'mu', loadChildren: './pages/music/music.module#MusicModule', data: { title: '音乐' } },
   { path: 'ph', loadChildren: './pages/photo-wall/photo-wall.module#PhotoWallModule', data: { title: '照片墙' } },
-  { path: '', redirectTo: 'user', pathMatch: 'full'}
-  // { path: '', loadChildren: './pages/three-d/three-d.module#ThreeDModule', data: { title: '3D' } },
+  // { path: '', redirectTo: 'user', pathMatch: 'full'}
+  { path: '', loadChildren: './pages/three-d/three-d.module#ThreeDModule', data: { title: '3D' } },
   // { path: '**', loadChildren: './pages/not-found/not-found.module#NotFoundModule', data: { title: '404' }}
 ];
 
