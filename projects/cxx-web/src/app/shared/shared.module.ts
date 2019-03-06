@@ -4,7 +4,6 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MagicSquareModule } from './components/magic-square/magic-square.module';
-import { DirectiveModule } from 'cxx-lib';
 export const Url = new InjectionToken('SettingsUrl');
 @NgModule({
   exports: [
@@ -13,8 +12,7 @@ export const Url = new InjectionToken('SettingsUrl');
     NgZorroAntdModule,
     FormsModule,
     ReactiveFormsModule,
-    MagicSquareModule,
-    DirectiveModule
+    MagicSquareModule
   ]
 })
 export class SharedModule {

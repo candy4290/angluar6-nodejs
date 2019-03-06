@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+.front-shadow {
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 3 !important;
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+  .preview {
+    color: #fff;
+    position: absolute;
+    font-size: 28px;
+    left: calc(50% - 14px);
+    top: calc(50% - 21px);
+  }
+}
