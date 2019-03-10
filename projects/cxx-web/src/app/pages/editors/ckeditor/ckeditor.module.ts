@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CkeditorComponent } from './ckeditor.component';
-import { CKEditorModule } from 'ng2-ckeditor';
 import { CkeditorRoutingModule } from './ckeditor-routing.module';
 import { FormsModule } from '@angular/forms';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
   imports: [
     CommonModule,

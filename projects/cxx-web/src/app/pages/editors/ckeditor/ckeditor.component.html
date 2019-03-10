@@ -1,1 +1,3 @@
-<ckeditor name="ckeditor" id="ckeditor" [(ngModel)]="editContent"  debounce="500" [config]="config"> </ckeditor>
+<!-- <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> -->
+<!-- <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" (ready)="onReady($event)"></ckeditor> -->
+<ckeditor id="editor" [config]="config" [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)"></ckeditor>
