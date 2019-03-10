@@ -26,7 +26,7 @@ export function createRootInitializer(http: HttpClient, config: ConfigService) {
     BrowserModule,
     HttpClientModule,
     NgZorroAntdModule,
-    UMeditorModule.forRoot()
+    UMeditorModule.forRoot(),
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: (createRootInitializer), deps: [HttpClient, ConfigService], multi: true},
