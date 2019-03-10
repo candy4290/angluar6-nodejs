@@ -7,6 +7,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common
 import { RequestInterceptor, ResponseInterceptor, ConfigService } from 'cxx-lib';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { UMeditorModule } from 'ngx-umeditor';
+
 export function createRootInitializer(http: HttpClient, config: ConfigService) {
   return () => {
     return http.get('assets/config/app.json').toPromise().then((rsp: any) => {
@@ -23,7 +25,8 @@ export function createRootInitializer(http: HttpClient, config: ConfigService) {
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    UMeditorModule.forRoot()
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: (createRootInitializer), deps: [HttpClient, ConfigService], multi: true},

@@ -8,6 +8,7 @@ var logger = require('morgan'); // 再控制台中，显示req请求的信息
 // 路由信息（接口地址），存放routes的根目录
 var photoRouter = require('./routes/photo');
 var userRouter = require('./routes/user');
+var imgRouter = require('./routes/uploadImg');
 
 var app = express();
 
@@ -61,7 +62,8 @@ app.all('*', function(req, res, next) {
 
 // 配置路由 （‘自定义路径’，上面设置的接口地址）
 app.use('/photo', photoRouter);
-app.use('/user', userRouter)
+app.use('/user', userRouter);
+app.use('/imgs', imgRouter);
 
 // 错误处理 catch 404 and forward to error handler
 app.use(function(req, res, next) {

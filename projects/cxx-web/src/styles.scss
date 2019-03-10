@@ -13,3 +13,17 @@
 //     background: blue;
 //   }
 // }
+.fr-toolbar {
+  border-top-width: 0 !important;
+}
+.fr-modal .fr-modal-wrapper {
+  border-top-width: 0 !important;
+}
+
+
+.fr-wrapper > div[style*='z-index: 9999'] {
+  position: absolute;
+  top: -10000px;
+  opacity: 0;
+  display: none;
+}

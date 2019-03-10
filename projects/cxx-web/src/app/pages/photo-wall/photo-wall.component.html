@@ -1,14 +1,5 @@
 <div [@listAnim]="imgs?imgs.length:''" class="container">
-  <div nz-col *ngFor="let img of imgs" class="flip"
-  libDrag
-  [dragData]="img"
-  [draggedClass]="'drag-start'"
-  libDrop
-  [appDraggable]="true"
-  [dropData]="img"
-  [dragEnterClass]="'drag-enter'"
-  (dropped)="changeOrder($event)"
-  >
+  <div nz-col *ngFor="let img of imgs" class="flip">
     <div [@rotate]="img.frontOrBack" class="front">
       <img [src]="img.url" style="height:188px;width:150px;">
       <div class="front-shadow">

@@ -12,3 +12,4 @@ export * from './lib/intercept/request-interceptor';
 export * from './lib/intercept/response-interceptor';
 export * from './lib/service/config.service';
 export * from './lib/components/rotate-img/rotate-img.module';
+export * from './lib/components/cxxEditor/cxxEditor.module';
