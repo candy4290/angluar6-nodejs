@@ -247,16 +247,13 @@
         },
         setPreview: function(){
             var url = $G('url').value,
-                ow = parseInt($G('width').value, 10) || 0,
-                oh = parseInt($G('height').value, 10) || 0,
-                border = parseInt($G('border').value, 10) || 0,
+                ow = $G('width').value,
+                oh = $G('height').value,
+                border = $G('border').value,
                 title = $G('title').value,
                 preview = $G('preview'),
                 width,
                 height;
-
-            url = utils.unhtmlForUrl(url);
-            title = utils.unhtml(title);
 
             width = ((!ow || !oh) ? preview.offsetWidth:Math.min(ow, preview.offsetWidth));
             width = width+(border*2) > preview.offsetWidth ? width:(preview.offsetWidth - (border*2));
@@ -776,8 +773,8 @@
             for (i = 0; i < this.imageList.length; i++) {
                 data = this.imageList[i];
                 list.push({
-                    src: prefix + data.url,
-                    _src: prefix + data.url,
+                    src:'http://jiaoyou/'+ prefix + data.url,
+                    _src:'http://jiaoyou/'+  prefix + data.url,
                     title: data.title,
                     alt: data.original,
                     floatStyle: align
@@ -899,6 +896,7 @@
         pushData: function (list) {
             var i, item, img, icon, _this = this,
                 urlPrefix = editor.getOpt('imageManagerUrlPrefix');
+                 console.log(urlPrefix);
             for (i = 0; i < list.length; i++) {
                 if(list[i] && list[i].url) {
                     item = document.createElement('li');
@@ -911,8 +909,9 @@
                         }
                     })(img));
                     img.width = 113;
-                    img.setAttribute('src', urlPrefix + list[i].url + (list[i].url.indexOf('?') == -1 ? '?noCache=':'&noCache=') + (+new Date()).toString(36) );
-                    img.setAttribute('_src', urlPrefix + list[i].url);
+
+                    img.setAttribute('src','http://jiaoyou/'+ urlPrefix + list[i].url + (list[i].url.indexOf('?') == -1 ? '?noCache=':'&noCache=') + (+new Date()).toString(36) );
+                    img.setAttribute('_src','http://jiaoyou/'+ urlPrefix + list[i].url);
                     domUtils.addClass(icon, 'icon');
 
                     item.appendChild(img);
@@ -1128,7 +1127,7 @@
                 if(child.tagName && child.tagName.toLowerCase() == 'img' && domUtils.hasClass(items[i], 'selected')) {
                     src = child.src;
                     list.push({
-                        src: src,
+                        src:  src,
                         _src: src,
                         alt: src.substr(src.lastIndexOf('/') + 1),
                         floatStyle: align
