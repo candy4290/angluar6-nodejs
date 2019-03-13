@@ -9,6 +9,7 @@ var logger = require('morgan'); // 再控制台中，显示req请求的信息
 var photoRouter = require('./routes/photo');
 var userRouter = require('./routes/user');
 var imgRouter = require('./routes/uploadImg');
+var imgRouterCdkEditor = require('./routes/uploadImgCkeditor');
 
 var app = express();
 
@@ -64,6 +65,7 @@ app.all('*', function(req, res, next) {
 app.use('/photo', photoRouter);
 app.use('/user', userRouter);
 app.use('/imgs', imgRouter);
+app.use('/imgs-cdkeditor', imgRouterCdkEditor);
 
 // 错误处理 catch 404 and forward to error handler
 app.use(function(req, res, next) {

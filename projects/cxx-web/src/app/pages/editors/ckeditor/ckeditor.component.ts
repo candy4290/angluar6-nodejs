@@ -17,7 +17,10 @@ export class CkeditorComponent implements OnInit, AfterViewInit {
     editorData: '<p>Hello, world!</p>'
   };
   public config = {
-    // language: 'zh-cn'
+    language: 'zh-cn',
+    filebrowserImageUploadUrl: 'http://localhost:8081/imgs-cdkeditor/uploadImg',
+    // toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+    // plugins: [ 'Heading', 'Bold', 'Italic', 'Link', 'bulletedList', 'numberedList', 'BlockQuote', CKFinder ],
   };
   constructor() { }
 
@@ -26,22 +29,34 @@ export class CkeditorComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.Editor.create(document.querySelector('#editor'), {
-      toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
-      // plugins: [ 'Heading', 'Bold', 'Italic', 'Link', 'bulletedList', 'numberedList', 'BlockQuote', CKFinder ],
-    }).then(editor => {
+      language: 'zh-cn',
+      toolbar: [ 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', 'undo', 'redo',  ],
+      // plugins: [ CKFinder, 'Bold', 'Italic', 'Typing', 'Enter' ],
+      ckfinder: {
+        uploadUrl: 'http://localhost:8081/imgs-cdkeditor/uploadImg',
+        options: {
+          resourceType: 'Images'
+        }
+      },
+      image: {
+        styles: ['full', 'alignLeft', 'alignCenter', 'alignRight'],
+        toolbar:  ['imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter',
+        'imageStyle:alignRight', '|', 'imageTextAlternative']
+      }
+    }).then((editor: any) => {
       this.Editor = editor;
       console.log(editor);
-    }) .catch(error => {
-      console.error(error);
+    }) .catch((error: any) => {
+      // console.error(error);
     });
   }
 
-  public onReady( editor ) {
-    editor.ui.getEditableElement().parentElement.insertBefore(
-        editor.ui.view.toolbar.element,
-        editor.ui.getEditableElement()
-    );
-  }
+  // public onReady( editor ) {
+  //   editor.ui.getEditableElement().parentElement.insertBefore(
+  //       editor.ui.view.toolbar.element,
+  //       editor.ui.getEditableElement()
+  //   );
+  // }
 
   public onChange( { editor }: ChangeEvent ) {
     const data = editor.getData();
