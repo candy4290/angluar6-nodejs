@@ -9,7 +9,7 @@ import { UEditorComponent } from 'ngx-ueditor';
 })
 export class UmeditorComponent {
   @ViewChild('full') full: UEditorComponent;
-
+  full_source: any;
   setting = {
     // 这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
     toolbars: [['FullScreen', 'Source', '|', 'Undo', 'Redo', '|', 'Bold', 'Italic', 'underline', 'forecolor', '|', 'paragraph',
